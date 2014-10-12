@@ -21,34 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
-package org.tritania.solid;
+
+package org.tritania.solid.commands;
 
 import org.granitemc.granite.api.Granite;
-import org.granitemc.granite.api.plugin.Plugin;
-import org.granitemc.granite.api.plugin.PluginContainer;
-import org.tritania.solid.commands.*;
+import org.granitemc.granite.api.command.Command;
+import org.granitemc.granite.api.command.CommandInfo;
+import org.granitemc.granite.api.entity.player.Player;
 
-@Plugin(name = "Solid", id = "solid", version = "0.0.1")
-public class Solid {
-	
-	
-	public Solid(){
-		PluginContainer plugin = Granite.getPluginContainer(this);
-		plugin.registerCommandHandler(new Teleport());
-		plugin.registerCommandHandler(new Homes());
-	}
-	
-	public static String formatInfo(String message){
-		return message;
-	}
-	
-	public static String formatError(String message){
-		return message;
-	}
-	
-	public static String formatAlert(String message){
-		return message;
-	}
+public class Homes {
     
+    @Command(name = "sethome", info = "Sets a home")
+    public void onCommandTpa(CommandInfo info) {
+        //send a request to another player
+        //set teleport condition on players
+    }
+    
+    @Command(name = "home", info = "teleports a player home")
+    public void onCommandTpa(CommandInfo info) {
+        //set teleport condition on players
+    }
 }

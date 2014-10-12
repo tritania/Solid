@@ -21,34 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
+
 package org.tritania.solid;
 
-import org.granitemc.granite.api.Granite;
-import org.granitemc.granite.api.plugin.Plugin;
-import org.granitemc.granite.api.plugin.PluginContainer;
-import org.tritania.solid.commands.*;
 
-@Plugin(name = "Solid", id = "solid", version = "0.0.1")
-public class Solid {
-	
-	
-	public Solid(){
-		PluginContainer plugin = Granite.getPluginContainer(this);
-		plugin.registerCommandHandler(new Teleport());
-		plugin.registerCommandHandler(new Homes());
-	}
-	
-	public static String formatInfo(String message){
-		return message;
-	}
-	
-	public static String formatError(String message){
-		return message;
-	}
-	
-	public static String formatAlert(String message){
-		return message;
-	}
+
+public class Players {
     
 }
