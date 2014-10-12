@@ -24,21 +24,32 @@
  
 package org.tritania.solid;
 
+import java.io.File;
+
 import org.granitemc.granite.api.Granite;
+import org.granitemc.granite.api.Server;
+import org.granitemc.granite.api.API;
 import org.granitemc.granite.api.plugin.Plugin;
 import org.granitemc.granite.api.plugin.PluginContainer;
+
 import org.tritania.solid.commands.*;
 
 @Plugin(name = "Solid", id = "solid", version = "0.0.1")
 public class Solid {
 	
     public Players players;
+    public Storage store;
+    public String datalocal;
 	
 	public Solid(){
 		PluginContainer plugin = Granite.getPluginContainer(this);
-		plugin.registerCommandHandler(new Teleport());
-		plugin.registerCommandHandler(new Homes());
-        players = new Players();
+		plugin.registerCommandHandler(new Teleport(this));
+		plugin.registerCommandHandler(new Homes(this));
+        
+        datalocal = Granite.getServer().getDataDirectory().getAbsolutePath();
+        
+        players = new Players(this);
+        store = new Storage(this);
 	}
 	
 	public static String formatInfo(String message){

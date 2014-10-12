@@ -29,7 +29,15 @@ import org.granitemc.granite.api.command.Command;
 import org.granitemc.granite.api.command.CommandInfo;
 import org.granitemc.granite.api.entity.player.Player;
 
+import org.tritania.solid.Solid;
+
 public class Teleport {
+    
+    public Solid solid;
+    
+    public Teleport(Solid solid) {
+        this.solid = solid;
+    }
     
     @Command(name = "tpa", info = "Sends a tp request to a player", aliases = {"tp"})
     public void onCommandTpa(CommandInfo info) {

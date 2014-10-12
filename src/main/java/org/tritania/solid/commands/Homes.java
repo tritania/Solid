@@ -29,7 +29,15 @@ import org.granitemc.granite.api.command.Command;
 import org.granitemc.granite.api.command.CommandInfo;
 import org.granitemc.granite.api.entity.player.Player;
 
+import org.tritania.solid.Solid;
+
 public class Homes {
+    
+    public Solid solid;
+    
+    public Homes(Solid solid) {
+        this.solid = solid;
+    }
     
     @Command(name = "sethome", info = "Sets a home", aliases = {})
     public void onCommandSetHome(CommandInfo info) {
