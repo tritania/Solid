@@ -24,8 +24,22 @@
 
 package org.tritania.solid;
 
-
+import org.granitemc.granite.api.utils.Location;
+import org.granitemc.granite.api.entity.player.Player;
 
 public class Players {
     
+    public Players() {
+        //load homes
+    }
+    
+    public Player getTeleportDestination(String playerName) {
+        Player player = null; //debug
+        return player;
+    }
+    
+    public Location getHomeLocation(String player) {
+        Location location = null; //debug
+        return location;
+    }
 }

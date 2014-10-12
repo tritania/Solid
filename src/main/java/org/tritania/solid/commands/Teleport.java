@@ -38,19 +38,19 @@ public class Teleport {
     }
     
     @Command(name = "tpahere", info = "Sends a tpahere request to a player", aliases = {"tphere"})
-    public void onCommandTpa(CommandInfo info) {
+    public void onCommandTpaHere(CommandInfo info) {
         //send a request to another player
         //set teleport condition on players
     }
     
     @Command(name = "tpaccept", info = "Accepts pending tp requests", aliases = {"ta"})
-    public void onCommandTpa(CommandInfo info) {
+    public void onCommandTpAccept(CommandInfo info) {
         //teleport players
         //set teleport condition on players
     }
     
     @Command(name = "tpdeny", info = "Sends a tp request to a player", aliases = {"td"})
-    public void onCommandTpa(CommandInfo info) {
+    public void onCommandTpDeny(CommandInfo info) {
         //set teleport condition on players
     }
 }

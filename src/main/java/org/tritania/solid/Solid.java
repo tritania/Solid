@@ -32,11 +32,13 @@ import org.tritania.solid.commands.*;
 @Plugin(name = "Solid", id = "solid", version = "0.0.1")
 public class Solid {
 	
+    public Players players;
 	
 	public Solid(){
 		PluginContainer plugin = Granite.getPluginContainer(this);
 		plugin.registerCommandHandler(new Teleport());
 		plugin.registerCommandHandler(new Homes());
+        players = new Players();
 	}
 	
 	public static String formatInfo(String message){

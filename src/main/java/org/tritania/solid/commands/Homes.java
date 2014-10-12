@@ -31,14 +31,14 @@ import org.granitemc.granite.api.entity.player.Player;
 
 public class Homes {
     
-    @Command(name = "sethome", info = "Sets a home")
-    public void onCommandTpa(CommandInfo info) {
+    @Command(name = "sethome", info = "Sets a home", aliases = {})
+    public void onCommandSetHome(CommandInfo info) {
         //send a request to another player
         //set teleport condition on players
     }
     
-    @Command(name = "home", info = "teleports a player home")
-    public void onCommandTpa(CommandInfo info) {
+    @Command(name = "home", info = "teleports a player home", aliases = {})
+    public void onCommandHome(CommandInfo info) {
         //set teleport condition on players
     }
 }
