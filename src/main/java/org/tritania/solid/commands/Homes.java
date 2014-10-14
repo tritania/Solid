@@ -28,6 +28,7 @@ import org.granitemc.granite.api.Granite;
 import org.granitemc.granite.api.command.Command;
 import org.granitemc.granite.api.command.CommandInfo;
 import org.granitemc.granite.api.entity.player.Player;
+import org.granitemc.granite.api.utils.Location;
 
 import org.tritania.solid.Solid;
 
@@ -41,12 +42,14 @@ public class Homes {
     
     @Command(name = "sethome", info = "Sets a home", aliases = {})
     public void onCommandSetHome(CommandInfo info) {
-        //send a request to another player
-        //set teleport condition on players
+        Player player = (Player) info.getCommandSender();
+        solid.players.setHomeLocation(player);
     }
     
     @Command(name = "home", info = "teleports a player home", aliases = {})
     public void onCommandHome(CommandInfo info) {
-        //set teleport condition on players
+        Player player = (Player) info.getCommandSender();
+        Location location = solid.players.getHomeLocation(player);
+        player.setLocation(location);
     }
 }

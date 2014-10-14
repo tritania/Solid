@@ -24,6 +24,18 @@
 
 package org.tritania.solid;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.UUID;
+
 import org.granitemc.granite.api.utils.Location;
 import org.granitemc.granite.api.entity.player.Player;
 
@@ -32,6 +44,8 @@ import org.tritania.solid.Solid;
 public class Players {
     
     public Solid solid;
+    private HashMap<String, String> homes = new HashMap<String, String>();
+    private HashMap<UUID, UUID> teleports = new HashMap<UUID, UUID>();
 
     public Players(Solid solid)
     {
@@ -39,13 +53,37 @@ public class Players {
     }
 
     
+    public void loadPlayerHomes() {
+        homes = solid.store.loadHomes("homes.data");
+    }
+    
     public Player getTeleportDestination(String playerName) {
         Player player = null; //debug
         return player;
     }
     
-    public Location getHomeLocation(String player) {
-        Location location = null; //debug
-        return location;
+    public Location getHomeLocation(Player player) {
+        String id = player.getName();
+        String local[] = homes.get(id).split(","); 
+        if (player.getWorld().getLevelName().equals(local[0])) { //until Granite offers multiworld support
+            Location location = new Location(player.getWorld(),Double.parseDouble(local[1]),Double.parseDouble(local[2]),Double.parseDouble(local[3]));
+            return location;
+        } else {
+            return player.getLocation();
+        }
     }
+    
+    public void setHomeLocation(Player player) {
+        String id = player.getName();
+        UUID ids = player.getUniqueID(); 
+        Location location = player.getLocation();
+        String local = String.valueOf(location.getWorld().getLevelName()) + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ()); //???
+        homes.put(id, local);
+        saveHomes();
+    }
+    
+    public void saveHomes() { //going to be called everytime a new home is created
+        solid.store.saveHomes(homes, "homes.data");
+    }
+    
 }

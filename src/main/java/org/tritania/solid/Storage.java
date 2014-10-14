@@ -44,18 +44,19 @@ public class Storage implements Serializable
 {
 
     public Solid solid;
+    public String dir = "plugins/Solid";
 
     public Storage(Solid solid)
     {
         this.solid = solid;
-        new File(solid.datalocal + "/playerdata").mkdirs();
+        new File(dir).mkdirs();
     }
 
     public void saveHomes(HashMap toBeSaved, String fileName)
     {
         try
         {
-            File data =  new File(solid.datalocal + "/" + fileName);
+            File data =  new File(dir + "/" + fileName);
             FileOutputStream fos   = new FileOutputStream(data);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -76,7 +77,7 @@ public class Storage implements Serializable
         HashMap dataLoaded = new HashMap();
         try
         {
-            File data            = new File(solid.datalocal + "/" + fileName);
+            File data            = new File(dir + "/" + fileName);
             FileInputStream fis  = new FileInputStream(data);
             ObjectInputStream ois= new ObjectInputStream(fis);
 

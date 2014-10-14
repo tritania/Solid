@@ -24,33 +24,35 @@
  
 package org.tritania.solid;
 
-import java.io.File;
-
 import org.granitemc.granite.api.Granite;
 import org.granitemc.granite.api.Server;
 import org.granitemc.granite.api.API;
+import org.granitemc.granite.api.event.Event;
+import org.granitemc.granite.api.event.player.EventPlayerJoin;
 import org.granitemc.granite.api.plugin.Plugin;
 import org.granitemc.granite.api.plugin.PluginContainer;
 import org.granitemc.granite.api.event.EventHandlerContainer;
+import org.granitemc.granite.api.event.On;
 
-import org.tritania.solid.Listener;
-import org.tritania.solid.commands.*;
+import org.granitemc.granite.api.entity.player.Player;
+import org.granitemc.granite.api.event.player.EventPlayerInteract;
+import org.granitemc.granite.api.block.Block;
 
-@Plugin(name = "Solid", id = "solid", version = "0.0.1")
-public class Solid {
-	
-    public Players players;
-    public Storage store;
-    public boolean loaded = false; //until Granite offers enable and onLoad methods
-	
-	public Solid() {
-		PluginContainer plugin = Granite.getPluginContainer(this);
-		plugin.registerCommandHandler(new Teleport(this));
-		plugin.registerCommandHandler(new Homes(this));
-        plugin.registerEventHandler(new Listener(this));
-        
-        store = new Storage(this);
-        players = new Players(this);
-	}
+public class Listener {
+    
+    public Solid solid;
+    
+    public Listener(Solid solid) {
+        this.solid = solid;
+    }
+    
+    @On(event = EventPlayerJoin.class)
+    public void onJoin(EventPlayerJoin event) {
+        if (solid.loaded != true) {
+            solid.players.loadPlayerHomes();
+        }
+    }
 
 }
+
+    
