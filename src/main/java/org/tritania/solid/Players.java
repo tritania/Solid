@@ -45,7 +45,7 @@ public class Players {
     
     public Solid solid;
     private HashMap<String, String> homes = new HashMap<String, String>();
-    private HashMap<UUID, UUID> teleports = new HashMap<UUID, UUID>();
+    private HashMap<Player, Location> teleports = new HashMap<Player, Location>();
 
     public Players(Solid solid)
     {
@@ -62,14 +62,15 @@ public class Players {
         return player;
     }
     
-    public Location getHomeLocation(Player player) {
+    public void getHomeLocation(Player player) {
         String id = player.getName();
         String local[] = homes.get(id).split(","); 
         if (player.getWorld().getLevelName().equals(local[0])) { //until Granite offers multiworld support
-            Location location = new Location(player.getWorld(),Double.parseDouble(local[1]),Double.parseDouble(local[2]),Double.parseDouble(local[3]));
-            return location;
+            Location location = new Location(Double.parseDouble(local[1]),Double.parseDouble(local[2]),Double.parseDouble(local[3]));
+            player.setLocation(location);
+            player.sendMessage("Welcome home!");
         } else {
-            return player.getLocation();
+            player.sendMessage("A powerful magic keeps you from teleporting");
         }
     }
     
@@ -77,7 +78,7 @@ public class Players {
         String id = player.getName();
         UUID ids = player.getUniqueID(); 
         Location location = player.getLocation();
-        String local = String.valueOf(location.getWorld().getLevelName()) + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ()); //???
+        String local = player.getWorld().getLevelName() + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ()); //???
         homes.put(id, local);
         saveHomes();
     }

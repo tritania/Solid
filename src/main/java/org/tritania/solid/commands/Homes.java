@@ -44,12 +44,12 @@ public class Homes {
     public void onCommandSetHome(CommandInfo info) {
         Player player = (Player) info.getCommandSender();
         solid.players.setHomeLocation(player);
+        player.sendMessage("Home set!");
     }
     
     @Command(name = "home", info = "teleports a player home", aliases = {})
     public void onCommandHome(CommandInfo info) {
         Player player = (Player) info.getCommandSender();
-        Location location = solid.players.getHomeLocation(player);
-        player.setLocation(location);
+        solid.players.getHomeLocation(player);
     }
 }

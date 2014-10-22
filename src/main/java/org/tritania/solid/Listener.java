@@ -36,7 +36,9 @@ import org.granitemc.granite.api.event.On;
 
 import org.granitemc.granite.api.entity.player.Player;
 import org.granitemc.granite.api.event.player.EventPlayerInteract;
+import org.granitemc.granite.api.event.block.EventBlockBreak;
 import org.granitemc.granite.api.block.Block;
+import org.granitemc.granite.api.block.BlockType;
 
 public class Listener {
     
@@ -50,9 +52,9 @@ public class Listener {
     public void onJoin(EventPlayerJoin event) {
         if (solid.loaded != true) {
             solid.players.loadPlayerHomes();
+            solid.loaded = true;
         }
     }
-
 }
 
     
